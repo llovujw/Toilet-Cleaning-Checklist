@@ -111,39 +111,6 @@
             font-size: 16px;
         }
 
-        .status-card {
-            border: 1px solid #00A8FF;
-            border-radius: 12px;
-            padding: 20px;
-            width: 35%;
-            background: white;
-        }
-
-        .status-card h2 {
-            margin-top: 0;
-            font-weight: 800;
-            font-size: 20px;
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 16px;
-            font-weight: 500;
-            color: #555;
-        }
-
-        .status-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         .fab {
             position: fixed;
             bottom: 20px;
@@ -161,6 +128,64 @@
             color: black;
             font-weight: bold;
         }
+
+        .status-card {
+            width: 35%;
+        }
+
+        .status-card h2 {
+            margin-top: 0;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .status-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .status-box {
+            flex: 1;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+
+        .status-box .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .status-box .label {
+            font-size: 14px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .status-box .count {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 6px;
+            color: #333;
+        }
+
+        .status-box.clean {
+            background-color: #e1f9ec;
+            color: #27ae60;
+        }
+
+        .status-box.not-clean {
+            background-color: #fde2e2;
+            color: #c0392b;
+        }
+
+        .status-box.total {
+            background-color: #e9f0fb;
+            color: #2980b9;
+        }
     </style>
 </head>
 <body>
@@ -177,7 +202,6 @@
     </div>
 </div>
 
-<!-- Root Vue -->
 <div class="container" id="app">
     <div class="floor">
         <div class="floor-item" v-for="lantai in toilets" :key="lantai.lantai">
@@ -185,36 +209,45 @@
                 Lantai {{ lantai.lantai }}
                 <small>{{ lantai.jumlah }} toilet</small>
             </div>
-            <a :href="'<?= base_url('/checklist/mulai/') ?>' + lantai.lantai" class="button">Mulai Checklist</a>
+            <div style="display: flex; gap: 8px;">
+                <a :href="'<?= base_url('/checklist/mulai/') ?>' + lantai.lantai" class="button">Mulai Checklist</a>
+                <a :href="'<?= base_url('/toilet/edit/') ?>' + lantai.lantai" class="button" style="background-color: #28a745;">Edit</a>
+                <a :href="'<?= base_url('/toilet/hapusSemuaDiLantai/') ?>' + lantai.lantai" class="button" style="background-color: #dc3545;" onclick="return confirm('Yakin hapus semua toilet di lantai ini?')">Delete</a>
+            </div>
         </div>
     </div>
 
     <div class="status-card">
         <h2>Ringkasan Status</h2>
-        <div class="status-item">
-            <div class="status-icon">✅</div>
-            Sudah Dibersihkan
+        <div class="status-grid">
+            <div class="status-box clean">
+                <div class="icon">✅</div>
+                <div class="label">Sudah Dibersihkan</div>
+                <div class="count">{{ sudah }}</div>
+            </div>
+            <div class="status-box not-clean">
+                <div class="icon">❌</div>
+                <div class="label">Belum Dibersihkan</div>
+                <div class="count">{{ belum }}</div>
+            </div>
+            <div class="status-box total">
+                <div class="icon">🗓️</div>
+                <div class="label">Total Hari Ini</div>
+                <div class="count">{{ total }}</div>
+            </div>
         </div>
-        <div class="status-item">
-            <div class="status-icon">❌</div>
-            Belum Dibersihkan
-        </div>
-        <div class="status-item">
-            <div class="status-icon">🗓️</div>
-            Jadwal Hari Ini
-        </div>
-        <div style="margin-left: 34px; font-weight: bold; font-size: 18px;">{{ total }}</div>
     </div>
 </div>
 
 <a href="<?= base_url('/toilet/tambah') ?>" class="fab">+</a>
 
-<!-- Vue.js binding -->
 <script>
     new Vue({
         el: '#app',
         data: {
             toilets: <?= json_encode($lantaiToilets) ?>,
+            sudah: <?= json_encode($sudah) ?>,
+            belum: <?= json_encode($belum) ?>,
             total: <?= json_encode($total) ?>
         }
     });
