@@ -1,60 +1,26 @@
-# CodeIgniter 4 Framework
+# 🧼 Toilet Cleaning Checklist
 
-## What is CodeIgniter?
+Aplikasi web untuk melakukan checklist kebersihan toilet secara digital dan terstruktur.
+Dibuat menggunakan **CodeIgniter 4 (Backend)** dan **Vue.js (Frontend)**.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+🎥 **Demo Aplikasi:**
+👉 [Tonton di YouTube](https://youtu.be/sqczxynLHoo?si=2-jAoG1mUkUZqFVQ)
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## ✨ Tampilan Fitur
+![Log In](https://github.com/user-attachments/assets/331d2989-4bf4-4094-94e9-acca2156080b)
+![Dashboard](https://github.com/user-attachments/assets/ad20fbe3-32ab-47e3-9192-28b6891426e0)
+![Tambah Toilet](https://github.com/user-attachments/assets/719b61c7-2f37-4165-86fa-03c8f0f56ce7)
+![Checklist Kebersihan](https://github.com/user-attachments/assets/dab468ad-9b8c-4e95-aa70-5946978240aa)
+![Edit](https://github.com/user-attachments/assets/80cf5c2e-a7a0-411b-9ccf-7cc764d9abd4)
+![Riwayat](https://github.com/user-attachments/assets/b8cd5b0c-8ed1-4395-871b-73ef32941865)
+![Profile](https://github.com/user-attachments/assets/afe9d6fb-b517-48ea-91f1-f9f9b01681f9)
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## 👩‍💻 Tim Pengembang
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+* Intan Virginia Aulia Putri
+* Dendi Permana
+* Silfa Salsa Bila
+* Eka Juliyana Rahayu
 
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Contributing
-
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+> Proyek ini dikembangkan sebagai bagian dari **UAS Pemrograman Web 2**
+> Powered by 💙 CodeIgniter & Vue.js
