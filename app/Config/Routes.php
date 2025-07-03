@@ -26,7 +26,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->post('toilet/simpan', 'Toilet::simpan');
     $routes->get('/toilet/edit/(:num)', 'Toilet::edit/$1');
     $routes->post('/toilet/update/(:num)', 'Toilet::update/$1');
-    $routes->get('/toilet/delete/(:num)', 'Toilet::delete/$1');    
+    $routes->get('/toilet/delete/(:num)', 'Toilet::delete/$1');
+    $routes->get('/toilet/lantai/(:num)', 'Toilet::listByLantai/$1');     
 
     // ✅ Checklist
     $routes->get('checklist/mulai/(:num)', 'Checklist::mulai/$1');

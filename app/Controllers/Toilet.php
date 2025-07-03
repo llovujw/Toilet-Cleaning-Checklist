@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\ToiletModel;
 
 class Toilet extends BaseController
@@ -27,14 +28,14 @@ class Toilet extends BaseController
         }
     }
 
-    public function byLantai($lantai)
+    public function listByLantai($lantai)
     {
         $model = new ToiletModel();
         $toilets = $model->where('lantai', $lantai)->findAll();
 
-        return view('toilet/edit_lantai', [
-            'lantai' => $lantai,
-            'toilets' => $toilets
+        return view('toilet/list', [
+            'toilets' => $toilets,
+            'lantai' => $lantai
         ]);
     }
 
@@ -74,10 +75,20 @@ class Toilet extends BaseController
 
     public function delete($id)
     {
+        $checklistModel = new \App\Models\ChecklistModel();
+        $checklistDetailModel = new \App\Models\ChecklistDetailModel();
+    
+        $checklists = $checklistModel->where('toilet_id', $id)->findAll();
+    
+        foreach ($checklists as $checklist) {
+            $checklistDetailModel->where('checklist_id', $checklist['id'])->delete();
+  
+            $checklistModel->delete($checklist['id']);
+        }
+
         $model = new ToiletModel();
         $model->delete($id);
-
-        return redirect()->back()->with('success', 'Toilet berhasil dihapus.');
-    }
-
+    
+        return redirect()->to('/dashboard')->with('success', 'Toilet dan semua data terkait berhasil dihapus.');
+    }      
 }

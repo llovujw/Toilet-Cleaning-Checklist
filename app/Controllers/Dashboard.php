@@ -16,10 +16,7 @@ class Dashboard extends BaseController
         $toiletModel = new ToiletModel();
         $checklistModel = new ChecklistModel();
 
-        $lantaiToilets = $toiletModel->select('lantai, COUNT(*) as jumlah')
-            ->groupBy('lantai')
-            ->orderBy('lantai', 'ASC')
-            ->findAll();
+        $toilets = $toiletModel->orderBy('lantai', 'ASC')->findAll();
 
         $tanggal = date('Y-m-d');
         $sudah = $checklistModel->where('tanggal', $tanggal)
@@ -31,12 +28,12 @@ class Dashboard extends BaseController
                                 ->countAllResults();
 
         $totalHariIni = $sudah + $belum;
-
+        
         return view('dashboard/index', [
-            'lantaiToilets' => $lantaiToilets,
-            'sudah'         => $sudah,
-            'belum'         => $belum,
-            'total'         => $totalHariIni
-        ]);
+            'toilets' => $toilets,
+            'sudah'   => $sudah,
+            'belum'   => $belum,
+            'total'   => $totalHariIni
+        ]);        
     }
 }

@@ -204,15 +204,15 @@
 
 <div class="container" id="app">
     <div class="floor">
-        <div class="floor-item" v-for="lantai in toilets" :key="lantai.lantai">
+            <div class="floor-item" v-for="toilet in toilets" :key="toilet.id">
             <div class="floor-text">
-                Lantai {{ lantai.lantai }}
-                <small>{{ lantai.jumlah }} toilet</small>
+                {{ toilet.nama_toilet }}
+                <small>Lantai {{ toilet.lantai }}</small>
             </div>
             <div style="display: flex; gap: 8px;">
-                <a :href="'<?= base_url('/checklist/mulai/') ?>' + lantai.lantai" class="button">Mulai Checklist</a>
-                <a :href="'<?= base_url('/toilet/edit/') ?>' + lantai.lantai" class="button" style="background-color: #28a745;">Edit</a>
-                <a :href="'<?= base_url('/toilet/hapusSemuaDiLantai/') ?>' + lantai.lantai" class="button" style="background-color: #dc3545;" onclick="return confirm('Yakin hapus semua toilet di lantai ini?')">Delete</a>
+                <a :href="'<?= base_url('/checklist/mulai/') ?>' + toilet.id" class="button" style="background-color: #007BFF;">Checklist</a>
+                <a :href="'<?= base_url('/toilet/edit/') ?>' + toilet.id" class="button" style="background-color: #28a745;">Edit</a>
+                <a :href="'<?= base_url('/toilet/delete/') ?>' + toilet.id" class="button" style="background-color: #dc3545;" onclick="return confirm('Yakin hapus toilet ini?')">Delete</a>
             </div>
         </div>
     </div>
@@ -245,7 +245,7 @@
     new Vue({
         el: '#app',
         data: {
-            toilets: <?= json_encode($lantaiToilets) ?>,
+            toilets: <?= json_encode($toilets) ?>,
             sudah: <?= json_encode($sudah) ?>,
             belum: <?= json_encode($belum) ?>,
             total: <?= json_encode($total) ?>
